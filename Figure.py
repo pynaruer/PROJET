@@ -19,4 +19,4 @@ axes.add_collection3d(mplot3d.art3d.Poly3DCollection(your_mesh.vectors))
 scale = your_mesh.points.flatten("C")
 axes.auto_scale_xyz(scale, scale, scale)
 #Show the plot to the screen
-pyplot.show()
+#pyplot.show()

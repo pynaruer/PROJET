@@ -18,8 +18,8 @@ axes.add_collection3d(mplot3d.art3d.Poly3DCollection(your_mesh.vectors))
 scale = your_mesh.points.flatten("C")
 axes.auto_scale_xyz(scale, scale, scale)
 
-class Window(QWidget):
-    def __init__(self):
+class Interface(QWidget):
+    def __init__(self,boat):
         QWidget.__init__(self)
         self.setWindowTitle("Interface Bateau")
         self.layout = QGridLayout()
@@ -29,16 +29,17 @@ class Window(QWidget):
 
         #Button
         self.button_1 = QPushButton("Start simulation")
+
         #self.button_1.setStyleSheet("background-image: url(logo.jpg)")
         self.button_1.setFixedSize(450,273)
 
         self.layout.addWidget(self.button_1)
-        self.button_1.clicked.connect(self.start_simulation)
+        self.button_1.clicked.connect(self.start_simulation(boat))
 
         self.setLayout(self.layout)
 
     #Signaux
-    def start_simulation(self):
+    def start_simulation(self,boat):
         self.setFixedSize(1000,500)
 
         self.button_1.hide()
@@ -59,7 +60,7 @@ class Window(QWidget):
         self.fig = plt.figure()
         self.canvas = FigureCanvas(self.fig)
         axes = mplot3d.Axes3D(self.fig)
-        your_mesh = mesh.Mesh.from_file('Cylindrical_HULL.stl')
+        your_mesh = mesh.Mesh.from_file(boat)
         axes.add_collection3d(mplot3d.art3d.Poly3DCollection(your_mesh.vectors))
         scale = your_mesh.points.flatten("C")
         axes.auto_scale_xyz(scale, scale, scale)
@@ -67,13 +68,4 @@ class Window(QWidget):
         self.layout.addWidget(self.canvas,2,0,4,4)
 
     def exit(self):
-        window.close()
-
-
-if __name__ == "__main__":
-    import sys
-    app = QApplication()
-    window = Window()
-    window.show()
-    app.exec_()
-    sys.exit()
+        window_2.close()
