@@ -16,9 +16,9 @@ class Entry_Box(QWidget):
         self.number = 0
         self.__boat = ""
         self.__gravite = 0
-        self.setWindowTitle("Position d'équilibre d'un bateau")
+        self.setWindowTitle("Paramètres")
         self.setFixedSize(600, 400)
-        icon = QIcon("logo.png")
+        icon = QIcon("logo_parametres.png")
         self.setWindowIcon(icon)
 
         #Layouts
@@ -50,7 +50,7 @@ class Entry_Box(QWidget):
         self.layoutGrav.addWidget(self.choose)
 
         #Entree profondeur
-        self.entreeprof = QLabel("Veuillez saisir la profondeur (en m) : ")
+        self.entreeprof = QLabel("Veuillez saisir la profondeur de départ (en m) : ")
         self.prof = QDoubleSpinBox()
         self.prof.setMinimum(-999999999)
         self.prof.setMaximum(999999999)
@@ -73,26 +73,26 @@ class Entry_Box(QWidget):
         self.layout.addLayout(self.layoutProf)
         self.layout.addWidget(self.choix2)
 
-        self.VHullButton = QRadioButton("  Bateau 1 : V_HULL")
+        self.VHullButton = QRadioButton("  Bateau 1 : Triangulaire")
         self.layoutBateau1.addWidget(self.VHullButton)
 
-        self.RectangularButton = QRadioButton("Bateau 2 : Rectangular_HULL")
+        self.RectangularButton = QRadioButton("Bateau 2 : Rectangulaire")
         self.layoutBateau1.addWidget(self.RectangularButton)
 
-        self.CylButton = QRadioButton("  Bateau 3 : Cylindrical_HULL")
+        self.CylButton = QRadioButton("  Bateau 3 : Cylindrique")
         self.layoutBateau2.addWidget(self.CylButton)
 
-        self.MiniButton = QRadioButton("Bateau 4 : Mini650_HULL")
+        self.MiniButton = QRadioButton("Bateau 4 : Mini650")
         self.layoutBateau2.addWidget(self.MiniButton)
 
-        self.AluButton = QRadioButton("  Bateau 5 : BargeAlu_HULL")
+        self.AluButton = QRadioButton("  Bateau 5 : Barge Alu")
         self.layoutBateau3.addWidget(self.AluButton)
 
-        self.ssMarinButton = QRadioButton("Bateau 6 : ssMarin_HULL")
+        self.ssMarinButton = QRadioButton("Bateau 6 : Sous-Marin")
         self.layoutBateau3.addWidget(self.ssMarinButton)
 
-        self.WigleyButton = QRadioButton("  Bateau 7 : Wigley_HULL")
-        self.layoutBateau4.addWidget(self.WigleyButton)
+        #self.WigleyButton = QRadioButton("  Bateau 7 : Wigley")
+        #self.layoutBateau4.addWidget(self.WigleyButton)
 
         self.newButton = QRadioButton()
         self.specialLayout.addWidget(self.newButton)
@@ -207,7 +207,7 @@ class Interface(QWidget):
         self.__tirant = tirant
         self.__listgraph = listgraph
         self.__listx = listx
-        self.setWindowTitle("Interface Bateau")
+        self.setWindowTitle("Boat sinking interface")
         self.layout = QGridLayout()
 
         #Style
