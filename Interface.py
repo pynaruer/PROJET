@@ -10,6 +10,7 @@ from stl import mesh
 class Entry_Box(QWidget):
     def __init__(self):
         QWidget.__init__(self)
+        self.number = 0
         self.__boat = ""
         self.__gravite = 0
         self.setWindowTitle("Position d'équilibre d'un bateau")
@@ -88,8 +89,8 @@ class Entry_Box(QWidget):
     def verification(self):
         userInfo = QMessageBox.question(self,"Confirmation", "Confirmer",QMessageBox.Yes | QMessageBox.No)
         if userInfo == QMessageBox.Yes:
-            window_1.hide()
-            window_2.show()
+            self.number = 1
+            self.close()
         elif userInfo == QMessageBox.No:
             pass
 
@@ -142,6 +143,9 @@ class Entry_Box(QWidget):
     def getBoat(self):
         return self.__boat
 
+    def getNumber(self):
+        return self.number
+
 
 """Programme interface finale"""
 class Interface(QWidget):
@@ -166,7 +170,6 @@ class Interface(QWidget):
 
     #Signaux
     def start_simulation(self):
-        print(self.boat)
         self.setFixedSize(1000,500)
 
         self.button_1.hide()
@@ -203,8 +206,10 @@ if __name__ == "__main__":
     import sys
     app = QApplication([])
     window_1 = Entry_Box()
-    window_2 = Interface(window_1.getBoat())
-    window_2.hide()
     window_1.show()
     app.exec_()
-    sys.exit()
+    if window_1.getNumber() == 1:
+        window_2 = Interface(window_1.getBoat())
+        window_2.show()
+        app.exec_()
+        sys.exit()
