@@ -10,8 +10,7 @@ from stl import mesh
 class Entry_Box(QWidget):
     def __init__(self):
         QWidget.__init__(self)
-        self.boat = ""
-        #self.__gravite = 9.81 #Initiale
+        self.__boat = ""
         self.__gravite = 0
         self.setWindowTitle("Position d'équilibre d'un bateau")
         self.setMinimumSize(500, 300)
@@ -107,7 +106,7 @@ class Entry_Box(QWidget):
         self.__masse = self.txtenter.value()
 
         #Recuperation de l'url de l'stl
-        self.boat = self.txtButton.text()
+        self.__boat = self.txtButton.text()
 
         #Recuperation du choix du fichier stl
         if self.RectangularButton.isChecked() == False and self.VHullButton.isChecked() == False and self.CylButton.isChecked() == False and self.MiniButton.isChecked() == False and self.newButton.isChecked() == False and (self.newButton.isChecked() == False or self.txtButton.text() == "Entrez le fichier de votre choix"):
@@ -117,31 +116,31 @@ class Entry_Box(QWidget):
 
         if self.RectangularButton.isChecked() == True :
             self.layout.removeWidget(self.txtErreur)
-            self.boat = "Rectangular_HULL_Normals_Outward.STL"
+            self.__boat = "Rectangular_HULL_Normals_Outward.STL"
             self.verification()
 
         elif self.VHullButton.isChecked() == True :
             self.layout.removeWidget(self.txtErreur)
-            self.boat = "V_HULL_Normals_Outward.STL"
+            self.__boat = "V_HULL_Normals_Outward.STL"
             self.verification()
 
         elif self.CylButton.isChecked() == True:
             self.layout.removeWidget(self.txtErreur)
-            self.boat = "Cylindrical_HULL_Normals_Outward.STL"
+            self.__boat = "Cylindrical_HULL_Normals_Outward.STL"
             self.verification()
 
         elif self.MiniButton.isChecked() == True:
             self.layout.removeWidget(self.txtErreur)
-            self.boat = "Mini650_HULL_Normals_Outward.STL"
+            self.__boat = "Mini650_HULL_Normals_Outward.STL"
             self.verification()
 
         elif self.newButton.isChecked() == True:
             self.layout.removeWidget(self.txtErreur)
-            self.boat = str(self.txtButton.text())
+            self.__boat = str(self.txtButton.text())
             self.verification()
 
     def getBoat(self):
-        return self.boat
+        return self.__boat
 
 
 """Programme interface finale"""
@@ -188,7 +187,7 @@ class Interface(QWidget):
         self.fig = plt.figure()
         self.canvas = FigureCanvas(self.fig)
         axes = mplot3d.Axes3D(self.fig)
-        your_mesh = mesh.Mesh.from_file(str(self.boat))
+        your_mesh = mesh.Mesh.from_file(self.boat)
         axes.add_collection3d(mplot3d.art3d.Poly3DCollection(your_mesh.vectors))
         scale = your_mesh.points.flatten("C")
         axes.auto_scale_xyz(scale, scale, scale)
@@ -196,7 +195,7 @@ class Interface(QWidget):
         self.layout.addWidget(self.canvas,2,0,4,4)
 
     def exit(self):
-        window_2.close()
+        self.close()
 
 
 
