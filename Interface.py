@@ -68,6 +68,12 @@ class Entry_Box(QWidget):
 
         self.txtButton = QLineEdit("Entrez le fichier de votre choix")
         self.specialLayout.addWidget(self.txtButton)
+        self.txtButton.setStyleSheet("color: blue;"
+                        "background-color: yellow;"
+                        "selection-color: yellow;"
+                        "selection-background-color: blue;")
+
+        self.espace = QLabel("")
 
         self.layout.addLayout(self.layoutBateau1)
         self.layout.addLayout(self.layoutBateau2)
@@ -79,9 +85,8 @@ class Entry_Box(QWidget):
         self.txtErreur = QLabel()
         self.txtErreur2 = QLabel()
 
+        self.layout.addWidget(self.espace)
         self.layout.addWidget(self.buttonvalidate)
-        self.layout.addWidget(self.txtErreur2)
-        self.layout.addWidget(self.txtErreur)
 
         self.setLayout(self.layout)
 
@@ -175,7 +180,7 @@ class Interface(QWidget):
         self.button_1.hide()
 
         self.button_2 = QPushButton("Exit")
-        self.layout.addWidget(self.button_2,1,8,1,1)
+        self.layout.addWidget(self.button_2,8,8,1,1)
         self.button_2.clicked.connect(self.exit)
 
         #Graphique
