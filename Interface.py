@@ -202,6 +202,7 @@ class Entry_Box(QWidget):
 class Interface(QWidget):
     def __init__(self,boat,tirant,listgraph,listx):
         QWidget.__init__(self)
+        self.__boat = boat
         self.coque = boat.getCoque()
         self.__tirant = tirant
         self.__listgraph = listgraph
@@ -229,21 +230,28 @@ class Interface(QWidget):
 
     #Signaux
     def start_simulation(self):
+        #ProgressBar
         self.button_1.hide()
         self.progressbar.show()
         for i in range(101):
             self.progressbar.setValue(i)
-            time.sleep(0.05)
+            time.sleep(0.02)
         self.setFixedSize(1000,550)
         self.progressbar.hide()
         self.button_2 = QPushButton("Exit")
         self.layout.addWidget(self.button_2,8,8,1,1)
         self.button_2.clicked.connect(self.exit)
 
+        #Label
+        hauteur_str = "Hauteur du tirant d'eau à l'équilibre : " + str(float("{:.5f}".format(self.__tirant)))
+        self.tirant_deau = QLabel(hauteur_str)
+        self.tirant_deau.setFont(QFont('Arial', 10))
+        self.layout.addWidget(self.tirant_deau,8,5,1,1)
+
         #Graphique
         self.fig2 = plt.figure()
         self.graph = FigureCanvas(self.fig2)
-        plt.ylim(-4,0)
+        plt.ylim(-3,0.5)
         plt.plot(self.__listx,self.__listgraph,"b-o")
         plt.grid(True)
         plt.title('Calcul de la position du tirant d\'eau \nen fonction des itérations')
@@ -254,7 +262,8 @@ class Interface(QWidget):
         self.fig = plt.figure()
         self.canvas = FigureCanvas(self.fig)
         axes = mplot3d.Axes3D(self.fig)
-        your_mesh = mesh.Mesh.from_file(self.coque)
+        your_mesh = mesh.Mesh.from_file(self.__boat.getCoque())
+        your_mesh.translate([0,0,-self.__tirant])
         axes.add_collection3d(mplot3d.art3d.Poly3DCollection(your_mesh.vectors))
         scale = your_mesh.points.flatten("C")
         axes.auto_scale_xyz(scale, scale, scale)
