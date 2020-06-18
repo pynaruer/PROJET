@@ -99,13 +99,14 @@ class Entry_Box(QWidget):
         self.txtButton = QLineEdit("Entrez le fichier de votre choix")
         self.specialLayout.addWidget(self.txtButton)
 
+        self.espace = QLabel("")
+
         self.layout.addLayout(self.layoutBateau1)
         self.layout.addLayout(self.layoutBateau2)
         self.layout.addLayout(self.layoutBateau3)
         self.layout.addLayout(self.layoutBateau4)
         self.layout.addLayout(self.specialLayout)
-
-
+        self.layout.addWidget(self.espace)
 
         self.buttonvalidate = QPushButton("Valider")
         self.buttonvalidate.clicked.connect(self.buttonClicked)
@@ -243,8 +244,9 @@ class Interface(QWidget):
         self.fig2 = plt.figure()
         self.graph = FigureCanvas(self.fig2)
         plt.ylim(-4,0)
-        plt.plot(self.__listx,self.__listgraph)
-        plt.xlabel('Calcul de la position du tirant d\'eau')
+        plt.plot(self.__listx,self.__listgraph,"b-o")
+        plt.grid(True)
+        plt.title('Calcul de la position du tirant d\'eau \nen fonction des itérations')
         self.graph.draw()
         self.layout.addWidget(self.graph,2,5,4,4)
 
