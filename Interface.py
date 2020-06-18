@@ -73,25 +73,25 @@ class Entry_Box(QWidget):
         self.layout.addLayout(self.layoutProf)
         self.layout.addWidget(self.choix2)
 
-        self.VHullButton = QRadioButton("Bateau 1 : V_HULL")
+        self.VHullButton = QRadioButton("  Bateau 1 : V_HULL")
         self.layoutBateau1.addWidget(self.VHullButton)
 
         self.RectangularButton = QRadioButton("Bateau 2 : Rectangular_HULL")
         self.layoutBateau1.addWidget(self.RectangularButton)
 
-        self.CylButton = QRadioButton("Bateau 3 : Cylindrical_HULL")
+        self.CylButton = QRadioButton("  Bateau 3 : Cylindrical_HULL")
         self.layoutBateau2.addWidget(self.CylButton)
 
         self.MiniButton = QRadioButton("Bateau 4 : Mini650_HULL")
         self.layoutBateau2.addWidget(self.MiniButton)
 
-        self.AluButton = QRadioButton("Bateau 5 : BargeAlu_HULL")
+        self.AluButton = QRadioButton("  Bateau 5 : BargeAlu_HULL")
         self.layoutBateau3.addWidget(self.AluButton)
 
         self.ssMarinButton = QRadioButton("Bateau 6 : ssMarin_HULL")
         self.layoutBateau3.addWidget(self.ssMarinButton)
 
-        self.WigleyButton = QRadioButton("Bateau 7 : Wigley_HULL")
+        self.WigleyButton = QRadioButton("  Bateau 7 : Wigley_HULL")
         self.layoutBateau4.addWidget(self.WigleyButton)
 
         self.newButton = QRadioButton()
@@ -105,8 +105,7 @@ class Entry_Box(QWidget):
         self.layout.addLayout(self.layoutBateau4)
         self.layout.addLayout(self.specialLayout)
 
-        self.txtButton = QLineEdit("Entrez le fichier de votre choix")
-        self.specialLayout.addWidget(self.txtButton)
+
 
         self.buttonvalidate = QPushButton("Valider")
         self.buttonvalidate.clicked.connect(self.buttonClicked)

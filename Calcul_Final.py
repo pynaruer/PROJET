@@ -10,6 +10,7 @@ def dicho(FP,bateau):
     listreturn = []
     xreturn = []
     index = 0
+
     while True:
         ancienzgm = zgmactuel
         zgmactuel = (zga+zgb) / 2
@@ -25,12 +26,14 @@ def dicho(FP,bateau):
             listreturn.append(zgb)
         xreturn.append(index)
         index +=1
+
 #Calcul du vecteur DS d'une facette à partir de AB et AC
 def CalculDS(A,B):
     resultat = []
     for i in range(3):
         resultat.append((A[(i+1) % 3]*B[(i+2) % 3] - A[(i+2) % 3]*B[(i+1) % 3]) /2)
     return resultat
+
 #Calcul de la force de pression sur une facette imergée
 def CalculF(Coordonee): #
     rho = 1025
@@ -44,12 +47,14 @@ def CalculF(Coordonee): #
     for i in range (len(F)):
         F[i] *= pression_pascal #N
     return F
+
 #Fonction pour trouver a partir des deux points le point sur la droite qui a Z = 0
 def PointAuNiveauDeLeauSurLaDroite(A,B):
     AB = [B[0]-A[0],B[1]-A[1],B[2]-A[2]]
     t = float(-A[2]/AB[2])
     PointEnZ0 = [A[0]+AB[0]*t, A[1]+AB[1]*t, A[2]+AB[2]*t]
     return PointEnZ0
+
 def CalculPousseeArchimede(bateau,Translation):
     PousseArchimede = [0,0,0]
     #On effectue un translation de X m
@@ -139,6 +144,7 @@ def CalculPousseeArchimede(bateau,Translation):
                 for n in range(len(PousseArchimede)) :
                     PousseArchimede[n] = PousseArchimede[n] + x[n] + y[n]
     return PousseArchimede[2]
+
 class Bateau:
     def __init__(self,profondeur,masse,coque,gravite):
         self.__profondeur = profondeur
