@@ -14,41 +14,56 @@ class Entry_Box(QWidget):
         self.__boat = ""
         self.__gravite = 0
         self.setWindowTitle("Position d'équilibre d'un bateau")
-        self.setMinimumSize(500, 300)
+        self.setFixedSize(600, 400)
 
         #Layouts
         self.layout = QVBoxLayout()
+        self.layoutProf = QHBoxLayout()
+        self.layoutGrav = QHBoxLayout()
         self.layoutEntrees = QHBoxLayout()
         self.layoutBateau1 = QHBoxLayout()
         self.layoutBateau2 = QHBoxLayout()
         self.specialLayout = QHBoxLayout()
 
+        #Style
+        self.setStyleSheet(open('mystylesheet.css').read())
+
         #Labels
         self.welcome = QLabel("Bienvenue sur l'interface de calcul de position de bateaux à l'équilibre")
-        self.choix1 = QLabel("Veuillez entrez votre masse (en kg) ainsi que  votre choix de gravité : ")
-        self.choix2 = QLabel("Veuillez choisir votre bateau")
+        self.choix1 = QLabel("Veuillez entrez votre choix de gravité : ")
+        self.choix2 = QLabel("Veuillez choisir votre bateau : ")
         self.layout.addWidget(self.welcome)
-        self.layout.addWidget(self.choix1)
+        self.layoutGrav.addWidget(self.choix1)
 
         #Creation menu déroulant
         self.choose = QComboBox()
         self.choose.addItem("Gravite terrestre") #9.81
         self.choose.addItem("Gravite lunaire") #1.62
         self.choose.addItem("Gravite martienne") #3.71
+        self.layoutGrav.addWidget(self.choose)
+
+        #Entree profondeur
+        self.entreeprof = QLabel("Veuillez saisir la profondeur (en m) : ")
+        self.prof = QDoubleSpinBox()
+        self.prof.setMinimum(-999999999)
+        self.prof.setMaximum(999999999)
 
         #Entrée de la masse
-        self.entreemasse = QLabel("Entrez la masse du bateau (en kg):")
+        self.entreemasse = QLabel("Entrez la masse du bateau (en kg) : ")
         self.txtenter = QDoubleSpinBox()
         self.txtenter.setMaximum(999999999)
         self.txtenter.setMinimum(0)
 
         #Organisation des layouts
-        self.layoutEntrees.addWidget(self.choose)
         self.layoutEntrees.addWidget(self.entreemasse)
         self.layoutEntrees.addWidget(self.txtenter)
+        self.layoutProf.addWidget(self.entreeprof)
+        self.layoutProf.addWidget(self.prof)
 
         #Ajout au layout en respectant l'ordre
         self.layout.addLayout(self.layoutEntrees)
+        self.layout.addLayout(self.layoutGrav)
+        self.layout.addLayout(self.layoutProf)
         self.layout.addWidget(self.choix2)
 
         self.VHullButton = QRadioButton("Bateau 1 : V_HULL")
@@ -68,12 +83,6 @@ class Entry_Box(QWidget):
 
         self.txtButton = QLineEdit("Entrez le fichier de votre choix")
         self.specialLayout.addWidget(self.txtButton)
-        self.txtButton.setStyleSheet("color: blue;"
-                        "background-color: yellow;"
-                        "selection-color: yellow;"
-                        "selection-background-color: blue;")
-
-        self.espace = QLabel("")
 
         self.layout.addLayout(self.layoutBateau1)
         self.layout.addLayout(self.layoutBateau2)
@@ -81,12 +90,10 @@ class Entry_Box(QWidget):
 
         self.buttonvalidate = QPushButton("Valider")
         self.buttonvalidate.clicked.connect(self.buttonClicked)
+        self.layout.addWidget(self.buttonvalidate)
 
         self.txtErreur = QLabel()
         self.txtErreur2 = QLabel()
-
-        self.layout.addWidget(self.espace)
-        self.layout.addWidget(self.buttonvalidate)
 
         self.setLayout(self.layout)
 
@@ -160,6 +167,7 @@ class Interface(QWidget):
         self.setWindowTitle("Interface Bateau")
         self.layout = QGridLayout()
         self.setFixedSize(500,300)
+        self.setStyleSheet(open('mystylesheet.css').read())
         icon = QIcon("bateau")
         self.setWindowIcon(icon)
 
