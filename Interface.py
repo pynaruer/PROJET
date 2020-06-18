@@ -2,7 +2,6 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from Figure import *
 from mpl_toolkits import mplot3d
 from stl import mesh
 
@@ -39,7 +38,7 @@ class Entry_Box(QWidget):
 
         #Entrée de la masse
         self.entreemasse = QLabel("Entrez la masse du bateau (en kg):")
-        self.txtenter = QSpinBox()
+        self.txtenter = QDoubleSpinBox()
         self.txtenter.setMaximum(999999999)
         self.txtenter.setMinimum(0)
 
@@ -52,20 +51,16 @@ class Entry_Box(QWidget):
         self.layout.addLayout(self.layoutEntrees)
         self.layout.addWidget(self.choix2)
 
-        self.VHullButton = QRadioButton()
-        self.VHullButton.setText("Bateau 1 : V_HULL")
+        self.VHullButton = QRadioButton("Bateau 1 : V_HULL")
         self.layoutBateau1.addWidget(self.VHullButton)
 
-        self.RectangularButton = QRadioButton()
-        self.RectangularButton.setText("Bateau 2 : Rectangular_HULL")
+        self.RectangularButton = QRadioButton("Bateau 2 : Rectangular_HULL")
         self.layoutBateau1.addWidget(self.RectangularButton)
 
-        self.CylButton = QRadioButton()
-        self.CylButton.setText("Bateau 3 : Cylindrical_HULL")
+        self.CylButton = QRadioButton("Bateau 3 : Cylindrical_HULL")
         self.layoutBateau2.addWidget(self.CylButton)
 
-        self.MiniButton = QRadioButton()
-        self.MiniButton.setText("Bateau 4 : Mini650_HULL")
+        self.MiniButton = QRadioButton("Bateau 4 : Mini650_HULL")
         self.layoutBateau2.addWidget(self.MiniButton)
 
         self.newButton = QRadioButton()
@@ -115,7 +110,7 @@ class Entry_Box(QWidget):
         self.boat = self.txtButton.text()
 
         #Recuperation du choix du fichier stl
-        if self.RectangularButton.isChecked() == False and self.VHullButton.isChecked() == False and self.CylButton.isChecked() == False and self.MiniButton.isChecked() == False and self.newButton.isChecked() == False:
+        if self.RectangularButton.isChecked() == False and self.VHullButton.isChecked() == False and self.CylButton.isChecked() == False and self.MiniButton.isChecked() == False and self.newButton.isChecked() == False and (self.newButton.isChecked() == False or self.txtButton.text() == "Entrez le fichier de votre choix"):
             self.layout.removeWidget(self.txtErreur)
             self.txtErreur = QLabel("Vous devez choisir un modèle de bateau !")
             self.layout.addWidget(self.txtErreur)
@@ -140,7 +135,7 @@ class Entry_Box(QWidget):
             self.boat = "Mini650_HULL_Normals_Outward.STL"
             self.verification()
 
-        elif self.MiniButton.isChecked() == True:
+        elif self.newButton.isChecked() == True:
             self.layout.removeWidget(self.txtErreur)
             self.boat = str(self.txtButton.text())
             self.verification()
