@@ -13,8 +13,9 @@ class Entry_Box(QWidget):
         self.number = 0
         self.__boat = ""
         self.__gravite = 0
+        self.__profondeur = 0
         self.setWindowTitle("Position d'équilibre d'un bateau")
-        self.setFixedSize(600, 400)
+        self.setFixedSize(600, 300)
 
         #Layouts
         self.layout = QVBoxLayout()
@@ -43,7 +44,7 @@ class Entry_Box(QWidget):
         self.layoutGrav.addWidget(self.choose)
 
         #Entree profondeur
-        self.entreeprof = QLabel("Veuillez saisir la profondeur (en m) : ")
+        self.entreeprof = QLabel("Veuillez saisir la profondeur de départ (en m) : ")
         self.prof = QDoubleSpinBox()
         self.prof.setMinimum(-999999999)
         self.prof.setMaximum(999999999)
@@ -66,13 +67,13 @@ class Entry_Box(QWidget):
         self.layout.addLayout(self.layoutProf)
         self.layout.addWidget(self.choix2)
 
-        self.VHullButton = QRadioButton("Bateau 1 : V_HULL")
+        self.VHullButton = QRadioButton("   Bateau 1 : V_HULL")
         self.layoutBateau1.addWidget(self.VHullButton)
 
         self.RectangularButton = QRadioButton("Bateau 2 : Rectangular_HULL")
         self.layoutBateau1.addWidget(self.RectangularButton)
 
-        self.CylButton = QRadioButton("Bateau 3 : Cylindrical_HULL")
+        self.CylButton = QRadioButton("   Bateau 3 : Cylindrical_HULL")
         self.layoutBateau2.addWidget(self.CylButton)
 
         self.MiniButton = QRadioButton("Bateau 4 : Mini650_HULL")
@@ -117,6 +118,9 @@ class Entry_Box(QWidget):
 
         #Recuperation de la masse
         self.__masse = self.txtenter.value()
+
+        #Recuperation de la profondeur
+        self.__profondeur = self.prof.value()
 
         #Recuperation de l'url de l'stl
         self.__boat = self.txtButton.text()
@@ -167,9 +171,11 @@ class Interface(QWidget):
         self.setWindowTitle("Interface Bateau")
         self.layout = QGridLayout()
         self.setFixedSize(500,300)
-        self.setStyleSheet(open('mystylesheet.css').read())
         icon = QIcon("bateau")
         self.setWindowIcon(icon)
+
+        #Style
+        self.setStyleSheet(open('mystylesheet.css').read())
 
         #Button
         self.button_1 = QPushButton("Start simulation")
