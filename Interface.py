@@ -3,6 +3,8 @@ from PySide2.QtGui import *
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from Figure import *
+from mpl_toolkits import mplot3d
+from stl import mesh
 
 
 """Programme Interface Paramètres"""
@@ -88,6 +90,15 @@ class Entry_Box(QWidget):
 
         self.setLayout(self.layout)
 
+    #Verification box
+    def verification(self):
+        userInfo = QMessageBox.question(self,"Confirmation", "Confirmer",QMessageBox.Yes | QMessageBox.No)
+        if userInfo == QMessageBox.Yes:
+            window_1.hide()
+            window_2.show()
+        elif userInfo == QMessageBox.No:
+            pass
+
     def buttonClicked(self):
         #Recuperation de la valeur du menu déroulant
         if self.choose.currentText() == "Gravite lunaire":
@@ -112,29 +123,27 @@ class Entry_Box(QWidget):
         if self.RectangularButton.isChecked() == True :
             self.layout.removeWidget(self.txtErreur)
             self.boat = "Rectangular_HULL_Normals_Outward.STL"
+            self.verification()
 
         elif self.VHullButton.isChecked() == True :
             self.layout.removeWidget(self.txtErreur)
             self.boat = "V_HULL_Normals_Outward.STL"
+            self.verification()
 
         elif self.CylButton.isChecked() == True:
             self.layout.removeWidget(self.txtErreur)
             self.boat = "Cylindrical_HULL_Normals_Outward.STL"
+            self.verification()
 
         elif self.MiniButton.isChecked() == True:
             self.layout.removeWidget(self.txtErreur)
             self.boat = "Mini650_HULL_Normals_Outward.STL"
+            self.verification()
 
         elif self.MiniButton.isChecked() == True:
             self.layout.removeWidget(self.txtErreur)
             self.boat = str(self.txtButton.text())
-
-        userInfo = QMessageBox.question(self,"Confirmation", "Confirmer",QMessageBox.Yes | QMessageBox.No)
-        if userInfo == QMessageBox.Yes:
-            window_1.hide()
-            window_2.show()
-        elif userInfo == QMessageBox.No:
-            pass
+            self.verification()
 
     def getBoat(self):
         return self.boat
@@ -184,7 +193,7 @@ class Interface(QWidget):
         self.fig = plt.figure()
         self.canvas = FigureCanvas(self.fig)
         axes = mplot3d.Axes3D(self.fig)
-        your_mesh = mesh.Mesh.from_file(self.boat)
+        your_mesh = mesh.Mesh.from_file(str(self.boat))
         axes.add_collection3d(mplot3d.art3d.Poly3DCollection(your_mesh.vectors))
         scale = your_mesh.points.flatten("C")
         axes.auto_scale_xyz(scale, scale, scale)
