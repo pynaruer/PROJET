@@ -15,7 +15,7 @@ Fonctionnalités :
 
 ==================================================================================
 
-Vidéo présentation du projet : https://www.youtube.com/watch?v=W0wk0NrBXN0&feature=youtu.be
+Vidéo présentation du projet : https://youtu.be/W0wk0NrBXN0
 
 ==================================================================================
 
