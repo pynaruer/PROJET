@@ -21,5 +21,5 @@ Vidéo présentation du projet : https://youtu.be/W0wk0NrBXN0
 
 MOCK-GASPALOU Maël,
 VAZ Yanice,
-GROLLEAU Alexis\n
+GROLLEAU Alexis,
 RUER Nathan
