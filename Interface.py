@@ -235,7 +235,7 @@ class Interface(QWidget):
         self.button_2.clicked.connect(self.exit)
 
         #Label
-        hauteur_str = "Hauteur du tirant d'eau à l'équilibre : " + str(float("{:.5f}".format(self.__tirant)))
+        hauteur_str = "Hauteur du tirant d'eau à l'équilibre (en m): " + str(float("{:.5f}".format(self.__tirant)))
         self.tirant_deau = QLabel(hauteur_str)
         self.tirant_deau.setFont(QFont('Arial', 10))
         self.layout.addWidget(self.tirant_deau,8,5,1,1)
