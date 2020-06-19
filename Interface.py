@@ -91,9 +91,6 @@ class Entry_Box(QWidget):
         self.ssMarinButton = QRadioButton("Bateau 6 : Sous-Marin")
         self.layoutBateau3.addWidget(self.ssMarinButton)
 
-        #self.WigleyButton = QRadioButton("  Bateau 7 : Wigley")
-        #self.layoutBateau4.addWidget(self.WigleyButton)
-
         self.newButton = QRadioButton()
         self.specialLayout.addWidget(self.newButton)
         self.txtButton = QLineEdit("Entrez le fichier de votre choix")
@@ -236,7 +233,7 @@ class Interface(QWidget):
         for i in range(101):
             self.progressbar.setValue(i)
             time.sleep(0.02)
-        self.setFixedSize(1000,550)
+        self.setFixedSize(1200,550)
         self.progressbar.hide()
         self.button_2 = QPushButton("Exit")
         self.layout.addWidget(self.button_2,8,8,1,1)
@@ -252,9 +249,9 @@ class Interface(QWidget):
         self.fig2 = plt.figure()
         self.graph = FigureCanvas(self.fig2)
         plt.ylim(-3,0.5)
-        plt.plot(self.__listx,self.__listgraph,"b-o", color = "red")
+        plt.plot(self.__listx,self.__listgraph,"b-o", color = 'blue')
         plt.grid(True)
-        plt.title('Calcul de la position du tirant d\'eau \nen fonction des itérations')
+        plt.title('Calcul de la position du tirant d\'eau \nen fonction des itérations',color ='blue')
         plt.xlabel("Nombre d'itérations")
         plt.ylabel("Position du tirant d'eau")
         self.graph.draw()
