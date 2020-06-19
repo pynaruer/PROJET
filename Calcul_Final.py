@@ -161,21 +161,20 @@ class Bateau:
         for i in self.__mesh.vectors:
             for y in i:
                 y[2] = y[2] + choixtransla
+
+
 #Tests
-#tonnerre = Bateau("PetitTonerre",100,'Rectangular_HULL.stl',9.81)
-#print(CalculF(tonnerre.getMesh().vectors[0],9.81))
-#print(CalculF([[0,0,0],[1,0,0],[0,1,0]],9.81))
-#print(CalculF([[0,0,-1],[1,0,-1],[0,1,-1]],9.81)) On s'attends a pression/2
-# Test calcul DS
-# a = [1,0,0]
-# b = [0,1,0]
-#print(CalculPousseeArchimede(tonnerre,0))
-# print(CalculDS(a,b))
+
+#tonnerre = Bateau("PetitTonerre",100,'Rectangular_HULL.stl')
 #print(CalculDS([-3,7,4],[1,8,3])) #test CalculDS : affiche théoriquement [-5.5, 6.5, -15.5]
 #print(CalculDS([-23,63,-8],[12,40,-44])) #2eme test de CalculDS : affiche théoriquement [-1226, -554, -838]
 #print(CalculF([[4,2,3],[1,9,7],[5,10,6]])) #test CalculF : affiche théoriquement [-294954, 348582, -831234]
 #print(CalculF([[20,-34,12],[-3,29,4],[32,6,-32]])) #2eme test de CalculF : affiche théoriquement [65747928, 29602656, 44940264]
 #print(PointAuNiveauDeLeauSurLaDroite([1,3,2],[-5,0,4])) #test PointAuNiveauDeLeauSurLaDroite : affiche théoriquement [7,6,0]
+#print(PointAuNiveauDeLeauSurLaDroite([8,5,12],[19,26,38])) #2eme test PointAuNiveauDeLeauSurLaDroite : affiche théoriquement [7,6,0]
 #print(CalculPousseeArchimede(tonnerre,-1)) #test CalculPousseeArchimede : affiche théoriquement 80442 N
-FP=1590.8*9.81    #test dichotomie : affiche théoriquement 0,194
-#print(dicho(FP,tonnerre))  #suite du test
+#print(CalculPousseeArchimede(tonnerre,-0.5)) #2eme test CalculPousseeArchimede : affiche théoriquement 40221 N
+#FP=1590.8*9.81 #test dichotomie : affiche théoriquement 0,194
+#print(dicho(FP,tonnerre)) #suite du test
+#FP=7609.6*9.81 #test dichotomie : affiche théoriquement 0,928
+#print(dicho(FP,tonnerre)) #suite du test
