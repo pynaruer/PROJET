@@ -9,8 +9,8 @@ Fonctionnalités :
 
 ==================================================================================
 
-Interface.py : Lancement des fonctionnalités dans une interface Qt
-Calcul_Final.py : Fichier regroupant le programme calculant la poussée d'Archimède sur la coque en calculant
+- Interface.py : Lancement des fonctionnalités dans une interface Qt
+- Calcul_Final.py : Fichier regroupant le programme calculant la poussée d'Archimède sur la coque en calculant
                   pour chaque facettes du fichier STL et l'algorithme de dichotomie 
 
 ==================================================================================
