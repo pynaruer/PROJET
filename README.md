@@ -19,7 +19,7 @@ Vidéo présentation du projet : https://youtu.be/W0wk0NrBXN0
 
 ==================================================================================
 
-VAZ Yanice
 MOCK-GASPALOU Maël
+VAZ Yanice
 GROLLEAU Alexis
 RUER Nathan
