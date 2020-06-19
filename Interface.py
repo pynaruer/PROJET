@@ -139,7 +139,7 @@ class Entry_Box(QWidget):
         self.__boat = self.txtButton.text()
 
         #Recuperation du choix du fichier stl
-        if self.RectangularButton.isChecked() == False and self.VHullButton.isChecked() == False and self.CylButton.isChecked() == False and self.MiniButton.isChecked() == False and self.newButton.isChecked() == False and (self.newButton.isChecked() == False or self.txtButton.text() == "Entrez le fichier de votre choix"):
+        if self.RectangularButton.isChecked() == False and self.AluButton.isChecked() == False and self.ssMarinButton.isChecked() == False and self.VHullButton.isChecked() == False and self.CylButton.isChecked() == False and self.MiniButton.isChecked() == False and self.newButton.isChecked() == False and (self.newButton.isChecked() == False or self.txtButton.text() == "Entrez le fichier de votre choix"):
             self.layout.removeWidget(self.txtErreur)
             self.txtErreur = QLabel("Vous devez choisir un modèle de bateau !")
             self.layout.addWidget(self.txtErreur)
@@ -172,11 +172,6 @@ class Entry_Box(QWidget):
         elif self.ssMarinButton.isChecked() == True:
             self.layout.removeWidget(self.txtErreur)
             self.__boat = "ssmarin_L=4_W=2_H=2_Normals_Outward.STL"
-            self.verification()
-
-        elif self.WigleyButton.isChecked() == True:
-            self.layout.removeWidget(self.txtErreur)
-            self.__boat = "WIGLEY_L=2500_B=250_T=156_NormalOutward2.STL"
             self.verification()
 
         elif self.AluButton.isChecked() == True:
